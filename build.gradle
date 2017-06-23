@@ -30,9 +30,9 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-jooq')
-	runtime('com.h2database:h2')
+	compile("mysql:mysql-connector-java:5.+")
 	jooqRuntime('org.jooq:jooq-codegen')
-	jooqRuntime('com.h2database:h2')
+	jooqRuntime('mysql:mysql-connector-java:5.+')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -41,10 +41,10 @@ jooq {
 	edition = 'OSS'
 	sample(sourceSets.main) {
 		jdbc {
-			driver = "org.h2.Driver"
-			url = "jdbc:h2:~/jooq"
-			user = "sa"
-			password = "sa"
+			driver = "com.mysql.jdbc.Driver"
+			url = "jdbc:mysql://localhost:3306/jooq-practice"
+			user = "root"
+			password = "kingbbode"
 		}
 		generator {
 			name = 'org.jooq.util.JavaGenerator'
@@ -52,8 +52,8 @@ jooq {
 				name = 'org.jooq.util.example.JPrefixGeneratorStrategy '
 			}
 			database {
-				name = 'org.jooq.util.h2.H2Database'
-				inputSchema = ".*"
+				name = 'org.jooq.util.mysql.MySQLDatabase'
+				inputSchema = "jooq-practice"
 				includes = ".*"
 				excludes = ""
 			}
