@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.kingbbode.entities.Tables.COMMENTS;
 import static com.kingbbode.entities.Tables.POSTS;
@@ -28,6 +29,13 @@ public class PostRepository {
                 .selectFrom(POSTS)
                 .fetch()
                 .into(JPosts.class);
+    }
+
+    public Optional<JPosts> findById(int id){
+        return dsl
+                .selectFrom(POSTS)
+                .where(POSTS.ID.eq(id))
+                .fetchOptionalInto(JPosts.class);
     }
 
     public List<JPosts> findAllForAliasTest(){
@@ -62,3 +70,4 @@ public class PostRepository {
                 .fetchMaps();
     }
 }
+
