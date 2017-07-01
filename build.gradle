@@ -29,9 +29,11 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+
 	compile('org.springframework.boot:spring-boot-starter-jooq')
+
+
 	compile("mysql:mysql-connector-java:5.+")
-	jooqRuntime('org.jooq:jooq-codegen')
 	jooqRuntime('mysql:mysql-connector-java:5.+')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
@@ -69,7 +71,6 @@ jooq {
 				daos = false
 				jpaAnnotations = false
 				validationAnnotations = false
-
 				globalObjectReferences = true
 				fluentSetters = false
 			}
